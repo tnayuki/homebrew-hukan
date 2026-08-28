@@ -5,7 +5,8 @@
 #
 # Each release is a `vX.Y.Z` tag in the hukan repository, built and published as
 # that tag's GitHub Release; this file names the version and the zip's sha256,
-# and is updated by hand once the Release exists.
+# and the two lines holding them are written by that tag's own workflow — which
+# is the one place the archive's hash is known without downloading it back.
 #
 #   brew tap tnayuki/hukan
 #   brew install --cask hukan
