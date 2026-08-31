@@ -26,7 +26,12 @@ cask "hukan" do
 
   depends_on macos: :sequoia
 
+  # The binary is the CLI: `hukan <path>` opens a directory or a file in the window, and
+  # `--wait` returns when its tab closes, which is what makes it usable as $EDITOR from any
+  # shell. It ships inside the bundle — hukan's own terminals name it by absolute path and
+  # need nothing installed — so the stanza is only for the shells outside.
   app "Hukan.app"
+  binary "#{appdir}/Hukan.app/Contents/Resources/hukan"
 
   # The bundle is ad-hoc signed (no Developer ID); strip the quarantine xattr so
   # Gatekeeper doesn't block first launch.
