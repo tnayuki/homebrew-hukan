@@ -34,11 +34,12 @@ cask "hukan" do
   binary "#{appdir}/Hukan.app/Contents/Resources/hukan"
 
   # The bundle is ad-hoc signed (no Developer ID); strip the quarantine xattr so
-  # Gatekeeper doesn't block first launch.
-  postflight do
-    system_command "/usr/bin/xattr",
-                   args: ["-d", "-r", "com.apple.quarantine", "#{appdir}/Hukan.app"],
-                   sudo: false
+  # Gatekeeper doesn't block first launch. Homebrew 7 retired the `postflight` Ruby block for
+  # this declarative steps DSL, which is not the cask's own scope: the stanzas above interpolate
+  # `appdir` as Ruby, while in here it is no method at all and the path is Homebrew's own
+  # `{{appdir}}` template, expanded when the step runs rather than when the cask is read.
+  postflight_steps do
+    run "/usr/bin/xattr", args: ["-d", "-r", "com.apple.quarantine", "{{appdir}}/Hukan.app"]
   end
 
   # Only the preferences: since macOS 15 — the floor above — AppKit's saved window state lives
