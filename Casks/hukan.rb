@@ -24,6 +24,11 @@ cask "hukan" do
     strategy :github_latest
   end
 
+  # The app is arm64 only: Homebrew stopped building bottles for Intel macOS, so the machine a
+  # universal build was for is one that can no longer install the CLI half of what hukan needs.
+  # Declared rather than left to fail at launch — without it an Intel machine installs a bundle
+  # it cannot execute, and the error it gets says nothing about why.
+  depends_on arch: :arm64
   depends_on macos: :sequoia
 
   # The binary is the CLI: `hukan <path>` opens a directory or a file in the window, and
