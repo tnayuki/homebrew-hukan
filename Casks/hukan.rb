@@ -29,6 +29,10 @@ cask "hukan" do
   # Declared rather than left to fail at launch — without it an Intel machine installs a bundle
   # it cannot execute, and the error it gets says nothing about why.
   depends_on arch: :arm64
+  # Run by absolute path from Homebrew's prefix, which arm64 alone settles: ripgrep is the files
+  # panel's filter and search, QEMU runs Windows guests (Virtualization.framework cannot), and
+  # Samba shares the session's worktree with them.
+  depends_on formula: ["ripgrep", "qemu", "samba"]
   depends_on macos: :sequoia
 
   # The binary is the CLI: `hukan <path>` opens a directory or a file in the window, and
