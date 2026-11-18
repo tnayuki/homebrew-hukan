@@ -11,8 +11,8 @@
 #   brew tap tnayuki/hukan
 #   brew install --cask hukan
 cask "hukan" do
-  version "3.4.0"
-  sha256 "d0efa17d40b3eb2b6f86b611c13540bb25bfeddab9bbde3c127c1b4984b0cc8a"
+  version "3.5.0"
+  sha256 "9baffd6cbfe11ad8de0fcde2bef8f93a0b924df3858323c90f20922cb569db3c"
 
   url "https://github.com/tnayuki/hukan/releases/download/v#{version}/Hukan.zip"
   name "hukan"
